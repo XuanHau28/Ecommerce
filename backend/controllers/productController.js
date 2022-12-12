@@ -28,11 +28,11 @@ exports.getAllProducts = catchAsyncErrors (async(req, res, next) => {
 
     const productsCount = await Product.countDocuments(); 
 
-    const apiFeatures = new ApiFeatures(Product.find(),req.query)
+    const apiFeature= new ApiFeatures(Product.find(),req.query)
     .search()
     .filter()
     .pagination(resultPerPage);
-    const products =  await apiFeatures.query;
+    const products =  await apiFeature.query;
 
     
     res.status(200).json({
@@ -44,20 +44,18 @@ exports.getAllProducts = catchAsyncErrors (async(req, res, next) => {
 });
 
 //Get Product details
-exports.getProductDetails = catchAsyncErrors  ( async (req, res, next) => {
-
+exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.params.id);
-
-    if(!product) {
-        return next(new ErrorHander("Product not found", 404));
-}
+  
+    if (!product) {
+      return next(new ErrorHander("Product not found", 404));
+    }
+  
     res.status(200).json({
-        success: true,
-        product,
+      success: true,
+      product,
     });
-
-});
-
+  });
 //Update Product --Admin
 exports.updateProduct = catchAsyncErrors ( async (req, res, next) => {
     
