@@ -5,7 +5,9 @@ import { clearErrors, getProductDetails } from '../../actions/productAction';
 import ReactStarts from 'react-rating-stars-component';
 import ReviewCard from './ReviewCard';
 import Loader from '../Loader/Loader';
-import {useAlert} from 'react-alert'
+import {useAlert} from 'react-alert';
+import MetaData from '../Layout/MetaData';
+
 
 
 const ProductDetails = ({ match }) => {
@@ -38,6 +40,7 @@ const ProductDetails = ({ match }) => {
     <Fragment>
     {loading ? (<Loader />) : (
       <div>
+          <MetaData title={`${product.name} -- AmadoShop`}/>
               <div className='container w-[100vw] max-w-[100%] h-[unset] flex flex-col p-[6vw] box-border lg:flex-row bg-[rgba(255,255,255)] pt-[145px]'>
         <div className='w-[100%]  flex flex-col justify-evenly items-center p-[2vw] box-border border boder-solid border-white'>
             <Carousel>

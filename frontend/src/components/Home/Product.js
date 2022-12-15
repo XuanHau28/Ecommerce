@@ -19,7 +19,7 @@ const Product = ({ product }) => {
   const alert = useAlert();
  //use dispatch
  const dispatch = useDispatch();
- const { loading, error, products, productsCount } = useSelector((state) => state.products);
+ const { loading, error, products} = useSelector((state) => state.products);
    
  useEffect(() => {
   if(error) {

@@ -13,7 +13,7 @@ import {
   IoMdContact
 } from 'react-icons/io';
 
-const Header = () => {
+const Header = ({ history }) => {
   // const [bg, setBg] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
   // useEffect(() => {
@@ -23,8 +23,6 @@ const Header = () => {
   //     return window.scrollY > 50 ? setBg(true) : setBg(false);
   //   });
   // });
-
-  
 
   return (
     <header
@@ -46,13 +44,15 @@ const Header = () => {
           </div>
           {/* nav */}
           <nav className='hidden md:flex'>
-            <ul className='md:flex md:gap-x-12 text-white '>
-            <Link className='capitalize transition-all hover:border-b' to="/"><li>Home</li></Link>
-            <li className='hover:border-b'>About</li>
-            <Link className='capitalize transition-all hover:border-b' to="/products"><li className='hover:border-b'>Product</li></Link>
-            <li className='hover:border-b'>Contact</li>
+            <ul className='md:flex md:gap-x-12 text-white mt-1'>
+            <Link className='capitalize transition-all hover:border-b mt-1' to="/"><li>Home</li></Link>
+            <li className='hover:border-b mt-1'>About</li>
+            <Link className='capitalize transition-all hover:border-b mt-1' to="/products"><li>Product</li></Link>
+            <li className='hover:border-b mt-1'>Contact</li>
               <li className='text-white flex justify-between items-center gap-x-4 text-xl'>
-                <Link to='/search'><IoIosSearch /></Link>
+              
+                <Link to="/search"><IoIosSearch /></Link>
+
                 <a href='#'><IoIosCart /></a>
                 <a href='#'><IoMdContact /></a>
               </li>
