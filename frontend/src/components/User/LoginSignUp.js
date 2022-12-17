@@ -35,7 +35,7 @@ const LoginSignUp = ({ history }) => {
 
     const {name, email, password} = user;
 
-    const [avatar, setAvatar] = useState();
+    const [avatar, setAvatar] = useState("/avatar-1.png");
     const [avatarPreview, setAvatarPreview] = useState("/avatar-1.png");
 
     const loginSubmit = (e) => {
@@ -79,7 +79,7 @@ const LoginSignUp = ({ history }) => {
             alert.error(error);
             dispatch(clearErrors());
         }
-        if (user) {
+        if (isAuthenticated) {
             history.push("/account");
         }
     }, [dispatch, error, alert, history, isAuthenticated])
