@@ -54,7 +54,7 @@ const Header = ({ history }) => {
                 <Link to="/search"><IoIosSearch /></Link>
 
                 <a href='#'><IoIosCart /></a>
-                <a href='#'><IoMdContact /></a>
+                <Link to="/login"><IoMdContact /></Link>
               </li>
             </ul>
           </nav>

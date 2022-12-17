@@ -25,7 +25,7 @@ const Search = ( {history}) => {
              outline-none box-border focus:border-gray-500 focus:cursor-text pl-12 focus:pl-10 focus:pr-4 focus:text-sm'
             onChange={(e) => setKeyword(e.target.value)}
             />
-            <input className='z-30 lg:h-[6%] lg:w-[6%] w-[15%] h-[10%] bg-[tomato] border-none font-light cursor-pointer transition-all text-white
+            <input className='z-30 lg:h-[6%] lg:w-[6%] w-[15%] h-[15px] bg-[rgba(40,111,108)] border-none font-light cursor-pointer transition-all text-white
             hover:bg-[rgba(55,97,214)]' type='submit' value="Search" />
         </form>
     </Fragment>
