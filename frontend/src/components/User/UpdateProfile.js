@@ -1,12 +1,10 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import MailOutLineIcon from '@material-ui/icons/MailOutline';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, loadUser, updateProfile} from '../../actions/userAction';
 import {useAlert} from 'react-alert';
-
+import MetaData from '../Layout/MetaData';
 //import component
 import Loader from '../Loader/Loader';
 import { UPDATE_PROFILE_RESET } from '../../constants/userConstans';
@@ -78,10 +76,12 @@ useEffect(() => {
   return (
     <Fragment>
      { loading ? (<Loader />) : (
+      <Fragment>
+        <MetaData title="Update Profile" />
       <div className='w-[100vw] h-[100vh] max-w-[100%] flex justify-center items-center bg-white 
       lg:bg-[rgba(231,231,231)] fixed top-0 left-0 pt-[170px] lg:pt-[100px]'>
-         <div className='bg-white w-[25vw] h-[70vh] lg:w-[25vw] lg:h-[70vh] box-border overflow-hidden'>
-           <h2 className='text-center text-[rgba(0,0,0,0.664)] font-normal text-[1.3vmax] 
+         <div className='bg-white w-[100%] h-[70vh] lg:w-[25vw] lg:h-[70vh] box-border overflow-hidden'>
+           <h2 className='text-center text-[rgba(0,0,0,0.664)] font-normal text-[2.3vmax] lg:text-[1.3vmax]
            p-[1.3vmax] border-b border-b-[rgba(0,0,0,0.205)] w-[50%] m-auto'>
              Update Profile </h2>
                  {/* Sign Up Form */}
@@ -146,6 +146,7 @@ useEffect(() => {
               </form>
          </div>
        </div>
+       </Fragment>
      )}
     </Fragment>
   )
