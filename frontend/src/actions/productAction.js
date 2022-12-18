@@ -15,13 +15,11 @@ export const getProduct =
 async (dispatch) =>  {
     try {
         dispatch({type: ALL_PRODUCT_REQUEST});
+        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
-        let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings[0]}`;
-
-        if(category) {
-            link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}
-            &ratings[gte]=${ratings[0]}`;
-        }
+        if (category) {
+          link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        }   
 
         const {data} = await axios.get(link);
 

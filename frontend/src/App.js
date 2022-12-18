@@ -15,6 +15,7 @@ import LoginSignUp from './components/User/LoginSignUp';
 import UserOptions from './components/Layout/Header/UserOptions.js';
 import Profile from './components/User/Profile.js';
 import ProtectedRoute from './components/Route/ProtectedRoute';
+import UpdateProfile from './components/User/UpdateProfile.js';
 
 
 
@@ -38,6 +39,7 @@ const App = () => {
       <Route exact path="/search" component={Search} />
       <Route exact path="/login" component={LoginSignUp} />
       <ProtectedRoute exact path="/account" component={Profile} />
+      <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
       <Footer />
     </Router>
 );

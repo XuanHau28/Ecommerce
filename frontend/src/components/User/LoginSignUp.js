@@ -5,7 +5,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import FaceIcon from '@material-ui/icons/Face';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, login, register } from '../../actions/userAction';
-import {useAlert} from 'react-alert'
+import {useAlert} from 'react-alert';
 
 //import component
 import Loader from '../Loader/Loader';
@@ -18,7 +18,7 @@ const LoginSignUp = ({ history }) => {
 
     const alert= useAlert();
 
-    const {loading, error, isAuthenticated, } = useSelector((state) => state.user)
+    const {loading, error, isAuthenticated, } = useSelector((state) => state.user);
 
     const loginTab = useRef(null);
     const registerTab = useRef(null);
