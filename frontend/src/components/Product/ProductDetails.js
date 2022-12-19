@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearErrors, getProductDetails } from '../../actions/productAction';
@@ -7,7 +7,7 @@ import ReviewCard from './ReviewCard';
 import Loader from '../Loader/Loader';
 import {useAlert} from 'react-alert';
 import MetaData from '../Layout/MetaData';
-
+import { addItemsToCart } from '../../actions/cartAction';
 
 
 const ProductDetails = ({ match }) => {
@@ -18,7 +18,25 @@ const ProductDetails = ({ match }) => {
   
   const {product, loading, error}  = useSelector((state) => state.productDetails);
 
+  const [quantity, setQuantity] = useState(1);
 
+  const increaseQuantity = () => {
+    if (product.Stock <= quantity) return
+   const qty =  quantity + 1;
+    setQuantity(qty);
+  }
+
+  const decreaseQuantity = () => { 
+    if (1 >= quantity) return
+    const qty  = quantity - 1;
+    setQuantity(qty);
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(match.params.id, quantity));
+    alert.success("Item Added To Cart")
+  }
+ 
   useEffect(() => {
     if(error) {
     alert.error(error);
@@ -73,16 +91,26 @@ const ProductDetails = ({ match }) => {
             <div className='flex items-center flex-col lg:flex-row'>
               {/* Detail Block 3-1-1 */}
               <div className='py-5 lg:py-0 '>
-                <button className='border-0 bg-[rgba(0,0,0,0.616)] p-1 w-[4vmax] lg:w-[1.75rem] lg:p-2 cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'>-</button>
-                <input className='border-0 p-2 lg:p-3 w-10 text-center outline-none font-normal text-sm text-[rbga(0,0,0,0.74)]' value='1' type="number"/>
-                <button className='border-0 bg-[rgba(0,0,0,0.616)]  p-1 w-[4vmax] lg:w-[1.75rem] lg:p-2 cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'>+</button>
-              </div>{" "}
-              <button className='border-0 cursor-pointer text-white transition-all bg-red-400 hover:bg-[rgba(214,84,61)] font-medium text-xs rounded-[20px] 
-            lg:px-0 lg:py-2 lg:m-4 lg:ml-10 p-[1.5vmax] w-[20vmax] lg:w-[8vmax] my-[3vmax] outline-none'>Add To Cart</button>
+                <button 
+                className='border-0 bg-[rgba(0,0,0,0.616)] p-1 w-[4vmax] lg:w-[1.75rem] lg:p-2 cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
+                onClick={decreaseQuantity}>
+                  -</button>
+                <input 
+                className='border-0 p-2 lg:p-3 w-10 text-center outline-none font-normal text-sm text-[rbga(0,0,0,0.74)]' readOnly value={quantity} type="number"/>
+                <button 
+                className='border-0 bg-[rgba(0,0,0,0.616)]  p-1 w-[4vmax] lg:w-[1.75rem] lg:p-2 cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
+                onClick={increaseQuantity}>
+                  +</button>
+              </div>
+              <button 
+              className='border-0 cursor-pointer text-white transition-all bg-red-400 hover:bg-[rgba(214,84,61)] font-medium text-xs rounded-[20px] 
+              lg:px-0 lg:py-2 lg:m-4 lg:ml-10 p-[1.5vmax] w-[20vmax] lg:w-[8vmax] my-[3vmax] outline-none'
+              onClick={addToCartHandler}
+            >Add To Cart</button>
             </div>
 
             <p className='border-y border-y-[rgba(0,0,0,0.205)] py-[2.5vmax] lg:text-left  text-center lg:py-4 text-[rgba(0,0,0,0.651)] font-normal text-base my-4'>
-              Status:{" "}
+              Status:
               <b className={product.stock < 1 ? "redColor" : "greenColor"}>
                 {product.Stock < 1 ? "OutOfStock" : "InStock"}
               </b>

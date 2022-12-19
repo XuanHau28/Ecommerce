@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 // import logo
 import Logo from '../../../assets/img/logo.png';
@@ -53,7 +53,7 @@ const Header = ({ history }) => {
               
                 <Link to="/search"><IoIosSearch /></Link>
 
-                <a href='#'><IoIosCart /></a>
+                <Link to='/cart'><IoIosCart /></Link>
                 <Link to="/login"><IoMdContact /></Link>
               </li>
             </ul>

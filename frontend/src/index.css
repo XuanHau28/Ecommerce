@@ -78,4 +78,10 @@
 .shiftToRight {
   transform: translateX(100%);
 }
+.emptyCart > svg {
+  font-size: 5vmax;
+}
+.emptyCart > p {
+  font-size: 2vmax;
+}
 }
