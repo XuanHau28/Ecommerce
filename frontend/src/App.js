@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import store from './store';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+
 
 // import components
 import Home from './components/Home/Home';
@@ -20,15 +25,30 @@ import UpdatePassword from './components/User/UpdatePassword.js';
 import ForgotPassword from './components/User/ForgotPassword.js';
 import ResetPassword from './components/User/ResetPassword.js';
 import Cart from './components/Cart/Cart.js';
+import Shipping from './components/Cart/Shipping.js';
+import ConfirmOrder from './components/Cart/ConfirmOrder.js';
+import Payment from './components/Cart/Payment.js';
+import OrderSuccess from './components/Cart/OrderSuccess.js';
+
 
 
 
 const App = () => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  const {isAuthenticated, user} = useSelector((state) => state.user)
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
-  React.useEffect(() => {
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setStripeApiKey(data.stripeApiKey);
+  }
+
+
+  useEffect(() => {
     store.dispatch(loadUser());
+
+    getStripeApiKey();
   },[])
 
   return(
@@ -50,6 +70,19 @@ const App = () => {
       <Route exact path="/password/reset/:token" component={ResetPassword} />
 
       <Route exact path="/cart" component={Cart} />
+
+      <ProtectedRoute exact path="/shipping" component={Shipping} />
+
+      <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+
+     {stripeApiKey &&
+      <Elements stripe={loadStripe(stripeApiKey)}>
+      <ProtectedRoute exact path="/process/payment" component={Payment} />
+      </Elements>}
+      
+      <ProtectedRoute exact path="/success" component={OrderSuccess} />
+
+      
       <Footer />
     </Router>
 );

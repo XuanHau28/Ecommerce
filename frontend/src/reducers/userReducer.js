@@ -25,7 +25,7 @@ import {
  RESET_PASSWORD_REQUEST,
  RESET_PASSWORD_SUCCESS,
  RESET_PASSWORD_FAIL
-} from '../constants/userConstans';
+} from '../constants/userConstants';
 
 export const userReducer = (state = {user: {} }, action) => {
     switch(action.type) {

@@ -24,7 +24,7 @@ import {
     RESET_PASSWORD_SUCCESS,
     RESET_PASSWORD_FAIL
 
-   } from '../constants/userConstans';
+   } from '../constants/userConstants';
 import axios from 'axios';
 
 //Login

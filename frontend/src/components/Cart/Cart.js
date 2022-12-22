@@ -6,7 +6,7 @@ import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
-const Cart = () => {
+const Cart = ({ history }) => {
 
   const dispatch = useDispatch();
 
@@ -17,19 +17,24 @@ const Cart = () => {
     if (stock <= quantity) {
       return;
     }
-    dispatch(addItemsToCart(id, newQty))
-  }
+    dispatch(addItemsToCart(id, newQty));
+  };
+
 
   const decreaseQuantity = (id, quantity) => {
-    const newQty = quantity-1;
+    const newQty = quantity - 1;
     if (1 >= quantity) {
       return;
     }
-    dispatch(addItemsToCart(id, newQty))
-  }
-
+    dispatch(addItemsToCart(id, newQty));
+  };
+  
   const deleteCartItems = (id) => {
     dispatch(removeItemsFromCart(id));
+  }
+
+  const checkoutHandler = () => {
+    history.push("/login?redirect=shipping")
   }
 
   return (
@@ -60,14 +65,14 @@ const Cart = () => {
                      <div className='flex items-center h-[20vmax] lg:h-[8vmax]'> 
                        <button
                        className='border-none bg-[rgba(0,0,0,0.616)] p-[1vmax] lg:p-[0.3vmax_0.5vmax] cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
-                       onClick={() => increaseQuantity(item.product, item.quantity)}
+                       onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)}
                        >-</button>
                        <input
                        className='border-none lg:font-normal text-[1.5vmax] lg:text-[0.8vmax] text-[rgba(0,0,0,0.74)] lg:w-[2vmax] w-[5vmax] font-normal p-[1.7vmax] lg:p-[0.5vmax] outline-none text-center'
                        type="number" value={item.quantity} readOnly/> 
                        <button
                         className='border-none bg-[rgba(0,0,0,0.616)] p-[1vmax] lg:p-[0.3vmax_0.5vmax]  cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
-                        onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)}
+                        onClick={() => increaseQuantity(item.product, item.quantity) }
                        >+</button>
                      </div>
        
@@ -90,6 +95,7 @@ const Cart = () => {
               <div className='checkOutBtn flex justify-end mt-[2vmax]'>
                 <button
                 className='bg-[tomato] text-white p-[1vmax_3vmax] lg:p-[0.8vmax_4vmax] font-medium text-[2vmax] lg:text-[0.8vmax] m-[1vmax_4vmax] cursor-pointer rounded-[30px] w-[100%] lg:w-[50%]' 
+                onClick={checkoutHandler}
                 >Check Out</button>
               </div>
               </div>

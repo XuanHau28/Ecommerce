@@ -7,7 +7,7 @@ import {useAlert} from 'react-alert';
 import MetaData from '../Layout/MetaData';
 //import component
 import Loader from '../Loader/Loader';
-import { UPDATE_PROFILE_RESET } from '../../constants/userConstans';
+import { UPDATE_PROFILE_RESET } from '../../constants/userConstants';
 
 const UpdateProfile = ({ history }) => {
 

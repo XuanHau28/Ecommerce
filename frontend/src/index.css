@@ -21,10 +21,7 @@
     -webkit-appearance: none;
     margin: 0;
   }
-  /* Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
+
   .greenColor{
     color: green;
   }
@@ -83,5 +80,78 @@
 }
 .emptyCart > p {
   font-size: 2vmax;
+}
+.MuiStepConnector-line {
+  display: none !important;
+}
+
+.MuiStepConnector-root {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.349);
+}
+
+.MuiStepConnector-active,
+.MuiStepConnector-completed {
+  background-color: tomato;
+}
+.confirmshippingArea > p {
+  font-weight: 400;
+  font-size: 1.8vmax;
+}
+
+.confirmCartItems > p {
+  font-weight: 400;
+  font-size: 1.8vw;
+}
+.orderSummary > p {
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.8vw;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.267);
+  padding: 1vmax;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+.paymentForm > p {
+  font-weight: 400;
+  font-size: 2vmax;
+  color: rgba(0, 0, 0, 0.753);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+  padding: 1vmax 0;
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+.orderSuccess > p {
+  font-size: 2vmax;
+}
+.orderSuccess > svg {
+  font-size: 7vmax;
+}
+@media screen and (max-width: 600px) {
+  .confirmshippingArea > p {
+    font-weight: 400;
+    font-size: 4vw;
+  }
+  .confirmCartItems > p {
+    font-weight: 400;
+    font-size: 4vmax;
+  }
+  
+  .orderSummary > p {
+    font-weight: 400;
+    font-size: 6vw;
+    padding: 4vw;
+  }
+  .paymentForm > p {
+    font-weight:400;
+    font-size: 8vw;
+    padding: 4vw 0;
+    width: 60%;
+  }
+  .orderSuccess > p {
+    font-size: 3vmax;
+  }
 }
 }

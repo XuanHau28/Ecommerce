@@ -64,7 +64,7 @@ const UserOptions = ({ user }) => {
     <Fragment>
         <Backdrop open={open} className="z-11" />
         <SpeedDial
-        className='fixed right-[3vmax] top-[2.5vmax]'
+        className='fixed lg:right-[3vmax] lg:top-[2.5vmax] md:right-[6vmax] md:top-[3vmax]  right-[10vmax] top-[4vmax]'
         ariaLabel='Speedial tooltip example'
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}

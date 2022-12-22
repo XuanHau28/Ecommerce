@@ -8,7 +8,7 @@ import MetaData from '../Layout/MetaData';
 
 //import component
 import Loader from '../Loader/Loader';
-import { UPDATE_PASSWORD_RESET } from '../../constants/userConstans';
+import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 
 const ResetPassword = ({ history, match}) => {
     const dispatch = useDispatch();
