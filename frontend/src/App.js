@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import store from './store';
 import { loadUser } from './actions/userAction';
 import { useSelector } from 'react-redux';
@@ -17,18 +17,20 @@ import ProductDetails from './components/Product/ProductDetails';
 import Products from './components/Product/Products';
 import Search from './components/Product/Search';
 import LoginSignUp from './components/User/LoginSignUp';
-import UserOptions from './components/Layout/Header/UserOptions.js';
-import Profile from './components/User/Profile.js';
+import UserOptions from './components/Layout/Header/UserOptions';
+import Profile from './components/User/Profile';
 import ProtectedRoute from './components/Route/ProtectedRoute';
-import UpdateProfile from './components/User/UpdateProfile.js';
-import UpdatePassword from './components/User/UpdatePassword.js';
-import ForgotPassword from './components/User/ForgotPassword.js';
-import ResetPassword from './components/User/ResetPassword.js';
-import Cart from './components/Cart/Cart.js';
-import Shipping from './components/Cart/Shipping.js';
-import ConfirmOrder from './components/Cart/ConfirmOrder.js';
-import Payment from './components/Cart/Payment.js';
-import OrderSuccess from './components/Cart/OrderSuccess.js';
+import UpdateProfile from './components/User/UpdateProfile';
+import UpdatePassword from './components/User/UpdatePassword';
+import ForgotPassword from './components/User/ForgotPassword';
+import ResetPassword from './components/User/ResetPassword';
+import Cart from './components/Cart/Cart';
+import Shipping from './components/Cart/Shipping';
+import ConfirmOrder from './components/Cart/ConfirmOrder';
+import Payment from './components/Cart/Payment';
+import OrderSuccess from './components/Cart/OrderSuccess';
+import MyOrders from './components/Order/MyOrders';
+import OrderDetails from './components/Order/OrderDetails';
 
 
 
@@ -73,7 +75,7 @@ const App = () => {
 
       <ProtectedRoute exact path="/shipping" component={Shipping} />
 
-      <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+
 
      {stripeApiKey &&
       <Elements stripe={loadStripe(stripeApiKey)}>
@@ -81,6 +83,14 @@ const App = () => {
       </Elements>}
       
       <ProtectedRoute exact path="/success" component={OrderSuccess} />
+
+      <ProtectedRoute exact path="/orders" component={MyOrders} />
+
+      <Switch>
+      <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+      <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+      </Switch>
+      
 
       
       <Footer />

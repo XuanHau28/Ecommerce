@@ -1,58 +1,102 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import Carousel from 'react-material-ui-carousel';
-import { useSelector, useDispatch } from 'react-redux';
-import { clearErrors, getProductDetails } from '../../actions/productAction';
-import ReactStarts from 'react-rating-stars-component';
-import ReviewCard from './ReviewCard';
-import Loader from '../Loader/Loader';
-import {useAlert} from 'react-alert';
-import MetaData from '../Layout/MetaData';
-import { addItemsToCart } from '../../actions/cartAction';
-
+import React, { Fragment, useEffect, useState } from "react";
+import Carousel from "react-material-ui-carousel";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  clearErrors,
+  getProductDetails,
+  newReview,
+} from "../../actions/productAction";
+import ReviewCard from "./ReviewCard.js";
+import Loader from "../Loader/Loader";
+import { useAlert } from "react-alert";
+import MetaData from "../Layout/MetaData";
+import { addItemsToCart } from "../../actions/cartAction";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+} from "@material-ui/core";
+import { Rating } from "@material-ui/lab";
+import { NEW_REVIEW_RESET } from "../../constants/productConstants";
 
 const ProductDetails = ({ match }) => {
-
   const dispatch = useDispatch();
-
   const alert = useAlert();
-  
-  const {product, loading, error}  = useSelector((state) => state.productDetails);
+
+  const { product, loading, error } = useSelector(
+    (state) => state.productDetails
+  );
+
+  const { success, error: reviewError } = useSelector(
+    (state) => state.newReview
+  );
+
+  const options = {
+    size: "large",
+    value: product.ratings,
+    readOnly: true,
+    precision: 0.5,
+  };
 
   const [quantity, setQuantity] = useState(1);
+  const [open, setOpen] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
 
   const increaseQuantity = () => {
-    if (product.Stock <= quantity) return
-   const qty =  quantity + 1;
-    setQuantity(qty);
-  }
+    if (product.Stock <= quantity) return;
 
-  const decreaseQuantity = () => { 
-    if (1 >= quantity) return
-    const qty  = quantity - 1;
+    const qty = quantity + 1;
     setQuantity(qty);
-  }
+  };
+
+  const decreaseQuantity = () => {
+    if (1 >= quantity) return;
+
+    const qty = quantity - 1;
+    setQuantity(qty);
+  };
 
   const addToCartHandler = () => {
     dispatch(addItemsToCart(match.params.id, quantity));
-    alert.success("Item Added To Cart")
-  }
- 
-  useEffect(() => {
-    if(error) {
-    alert.error(error);
-    dispatch(clearErrors());
-  }
-    dispatch(getProductDetails(match.params.id));
-  },[dispatch, match.params.id, error, alert]);
+    alert.success("Item Added To Cart");
+  };
 
-  const options = {
-    edit: false,
-    color: "rgba(20,20,20,0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 600 ? 20 : 25,
-    value: product.rating,
-    isHalf: true,
-  }
+  const submitReviewToggle = () => {
+    open ? setOpen(false) : setOpen(true);
+  };
+
+  const reviewSubmitHandler = () => {
+    const myForm = new FormData();
+
+    myForm.set("rating", rating);
+    myForm.set("comment", comment);
+    myForm.set("productId", match.params.id);
+
+    dispatch(newReview(myForm));
+
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (reviewError) {
+      alert.error(reviewError);
+      dispatch(clearErrors());
+    }
+
+    if (success) {
+      alert.success("Review Submitted Successfully");
+      dispatch({ type: NEW_REVIEW_RESET });
+    }
+    dispatch(getProductDetails(match.params.id));
+  }, [dispatch, match.params.id, error, alert, reviewError, success]);
 
   return (
     <Fragment>
@@ -81,8 +125,8 @@ const ProductDetails = ({ match }) => {
           </div>
           {/* Detail Block 2 */}
           <div className='flex justify-center lg:justify-start items-center border-y border-[rgba(0,0,0,0.205)] w-[70%] py-1'>
-              <ReactStarts {...options} />
-              <span className='text-[rgba(54,54,54,0.584)] font-extralight text-l lg:text-xl'>({product.numOfReviews} Reviews)</span>
+              <Rating {...options} />
+              <span className='font-extralight text-[0.8vmax] text-[rgba(0,0,0,0.699)]'>({product.numOfReviews} Reviews)</span>
           </div>
           {/* Detail Block 3 */}
           <div className='w-[70%]'>
@@ -105,6 +149,7 @@ const ProductDetails = ({ match }) => {
               <button 
               className='border-0 cursor-pointer text-white transition-all bg-red-400 hover:bg-[rgba(214,84,61)] font-medium text-xs rounded-[20px] 
               lg:px-0 lg:py-2 lg:m-4 lg:ml-10 p-[1.5vmax] w-[20vmax] lg:w-[8vmax] my-[3vmax] outline-none'
+              disabled={product.Stock < 1 ? true : false}
               onClick={addToCartHandler}
             >Add To Cart</button>
             </div>
@@ -122,22 +167,57 @@ const ProductDetails = ({ match }) => {
               </div>
               
               <button className='border-none bg-red-400 font-medium text-xs rounded-[20px] py-[12px] px-9 lg:py-3 lg:px-8 my-4 text-white cursor-pointer transition-all outline-none
-              hover:bg-[rgba(197,68,45)] hover:scale-110'>Submit Review</button>
+              hover:bg-[rgba(197,68,45)] hover:scale-110'
+              onClick={submitReviewToggle}
+              >Submit Review</button>
         </div>
       </div>
 
                 <h3 className='text-[#000000be] font-medium text-base lg:text-xl border-b border-b-[rgba(0,0,0,0.226)] p-4 w-[20vmax] m-auto
                 mb-[4vmax] text-center'>REVIEWS</h3>
 
-                {product.reviews && product.reviews[0] ? (
-                  <div className='flex overflow-auto'>
-                    {product.reviews && 
-                    product.reviews.map((review, index) =>  <ReviewCard review={review} />)}
-                  </div>
-                ) : (
-                  <p className='font-normal text-lg text-center text-[rgba(0,0,0,0.548)] pb-10'>No Reviews Yet</p>
-                )
-                }
+
+<Dialog
+            aria-labelledby="simple-dialog-title"
+            open={open}
+            onClose={submitReviewToggle}
+          >
+            <DialogTitle>Submit Review</DialogTitle>
+            <DialogContent className="submitDialog">
+              <Rating
+                onChange={(e) => setRating(e.target.value)}
+                value={rating}
+                size="large"
+              />
+
+              <textarea
+                className="submitDialogTextArea"
+                cols="30"
+                rows="5"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              ></textarea>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={submitReviewToggle} color="secondary">
+                Cancel
+              </Button>
+              <Button onClick={reviewSubmitHandler} color="primary">
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+          {product.reviews && product.reviews[0] ? (
+            <div className="reviews">
+              {product.reviews &&
+                product.reviews.map((review) => (
+                  <ReviewCard key={review._id} review={review} />
+                ))}
+            </div>
+          ) : (
+            <p className="noReviews">No Reviews Yet</p>
+          )}
       </div>
     )}
     </Fragment>

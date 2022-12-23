@@ -113,7 +113,7 @@ const Products = ({ match }) => {
 
           {/* Filter Ratings */}
           <fieldset
-           className='border border-[rgba(0,0,0,0.329)] px-4 lg:w-40 w-[90%] lg:ml-[-30px] mx-auto'>
+           className='border border-[rgba(0,0,0,0.329)] px-4 lg:w-40 w-[90%] lg:ml-[-30px] md:mr-[20vw] mx-auto'>
             <Typography component="legend" className='text-center'>Ratings Above</Typography>
             <Slider 
             value={ratings}

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactStarts from 'react-rating-stars-component';
 import { Link } from 'react-router-dom';
 
 //import swiper from react components
@@ -15,18 +14,15 @@ import '../../slider.css';
 
 
 //import icons
-import {HiPlus} from 'react-icons/hi'
+import { Rating } from '@material-ui/lab';
 
 
 const ProductCard =  ({ product }) => {
   const options = {
-    edit: false,
-    color: "rgba(20,20,20,0.1)",
-    activeColor: "tomato",
-    size: window.innerWidth < 600 ? 20 : 25,
-    value: product.rating,
-    isHalf: true
-  }
+    value: product.ratings,
+    readOnly: true,
+    precision: 0.5
+  };
 
   return (
               <Link to={`/product/${product._id}`}>
@@ -40,7 +36,7 @@ const ProductCard =  ({ product }) => {
                  {product.name}
                 </div>
                 <div className='ml-2'>
-                  <ReactStarts {...options}/> <span>({product.numOfReviews} reviews)</span>
+                  <Rating {...options}/> <span className="block  font-light text-[1.5vmax] md:text-[1vmax]">({product.numOfReviews} reviews)</span>
                   <div>{`$${product.price}`}</div>
                 </div>
               </div>

@@ -61,20 +61,25 @@
   .pageLinkActive {
     color: white;
   }
-.shiftToLeft {
-  transform: translateX(-100%);
-}
-.shiftToNeutral {
-  transform: translateX(0%);
-}
+  .signUpForm {
+    transform: translateY(-100%) translateX(-100vmax);
+  }
 
-.shiftToNeutralForm {
-  transform: translateX(0%) translateY(-100%);
-}
-
-.shiftToRight {
-  transform: translateX(100%);
-}
+  .shiftToLeft {
+    transform: translateX(-100%);
+  }
+  .shiftToNeutral {
+    transform: translateX(0%);
+  }
+  
+  .shiftToNeutralForm {
+    transform: translateX(0%) translateY(-100%);
+  }
+  
+  .shiftToRight {
+    transform: translateX(100%);
+  }
+  
 .emptyCart > svg {
   font-size: 5vmax;
 }
@@ -129,6 +134,78 @@
 .orderSuccess > svg {
   font-size: 7vmax;
 }
+#myOrdersHeading {
+  text-align: center;
+  font: 400 1.2vmax "Roboto";
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgb(255, 255, 255);
+  transition: all 0.5s;
+  background-color: rgb(40, 100, 80);
+}
+.myOrdersTable div {
+  font: 300 1vmax "Roboto";
+  color: rgba(0, 0, 0, 0.678);
+  border: none;
+}
+
+.myOrdersTable a {
+  color: rgba(0, 0, 0, 0.527);
+  transition: all 0.5s;
+}
+
+.myOrdersTable a:hover {
+  color: tomato;
+}
+
+.MuiDataGrid-columnHeader {
+  background-color: tomato;
+  padding: 1vmax !important;
+}
+
+.MuiDataGrid-columnHeader div {
+  color: rgb(255, 255, 255);
+  font-weight: 500 !important;
+  font-size: 1.1vmax;
+}
+
+.MuiDataGrid-iconSeparator {
+  display: none !important;
+}
+
+.orderDetailsContainer > h1 {
+  font-weight: 300;
+  font-size: 3vmax;
+  margin: 4vmax 0;
+  color: tomato;
+}
+.orderDetailsContainer > p {
+  font-weight: 400;
+  font-size: 1.8vmax;
+}
+
+.orderDetailsCartItems > p {
+  font: 400 1.8vmax "Roboto";
+}
+
+.submitDialog {
+  display: flex;
+  flex-direction: column;
+}
+.submitDialogTextArea {
+  border: 1px solid rgba(0, 0, 0, 0.082);
+  margin: 1vmax 0;
+  outline: none;
+  padding: 1rem;
+  font: 300 1rem "Roboto";
+}
+.reviewCardComment {
+  color: rgba(0, 0, 0, 0.836);
+  font-weight: 600;
+  font-size: 0.9vmax;
+}
+
+
 @media screen and (max-width: 600px) {
   .confirmshippingArea > p {
     font-weight: 400;
@@ -153,5 +230,31 @@
   .orderSuccess > p {
     font-size: 3vmax;
   }
+  
+  #myOrdersHeading {
+    font: 400 2.2vmax "Roboto";
+    padding: 4vw;
+  }
+
+  .myOrdersTable div {
+    font: 300 4vw "Roboto";
+  }
+
+  .MuiDataGrid-columnHeader {
+    padding: 20px !important;
+  }
+
+  .MuiDataGrid-columnHeader div {
+    font: 500 5vw "Roboto" !important;
+  }
+
+  .orderDetailsContainer > p {
+    font-size: 6vw;
+  }
+  .orderDetailsCartItems > p {
+    font-size: 6vw;
+  }
+
 }
+
 }
