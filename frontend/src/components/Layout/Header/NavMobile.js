@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // import data
 import { navigation } from '../../../data';
@@ -23,10 +24,10 @@ const NavMobile = () => {
             </li>
           );
         })}
-        <li className='text-primary flex flex-col justify-between items-center gap-x-4 text-2xl'>
-                <a href='#'><IoIosSearch /></a>
-                <a href='#'><IoIosCart /></a>
-                <a href='#'><IoMdContact /></a>
+        <li className='text-primary flex flex-col justify-between items-center gap-4 text-2xl'>
+        <Link to="/search"><IoIosSearch /></Link>
+        <Link to='/cart'><IoIosCart /></Link>
+        <Link to="/login"><IoMdContact /></Link>
               </li>
       </ul>
     </nav>

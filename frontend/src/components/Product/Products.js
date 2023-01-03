@@ -14,13 +14,16 @@ import ProductCard from '../Home/ProductCard';
 const Products = ({ match }) => {
 
   const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Smartphone",
-    "Attire",
-    "Camera"
+    "Sofas",
+    "Armchairs",
+    "Beds",
+    "Cushions",
+    "Tables",
+    "Highboards",
+    "Wall cabinets",
+    "TV cabinets",
+    "Outdoor lighting",
+    "Kids bedroom"
   ]
 
   const alert = useAlert();
@@ -80,7 +83,7 @@ const Products = ({ match }) => {
             {products &&
             products.map((product) => (
               <ProductCard  key={product._id} product={product} />
-            ))}
+            )).reverse()}
           </div>
 
 

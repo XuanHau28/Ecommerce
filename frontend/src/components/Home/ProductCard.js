@@ -36,7 +36,7 @@ const ProductCard =  ({ product }) => {
                  {product.name}
                 </div>
                 <div className='ml-2'>
-                  <Rating {...options}/> <span className="block  font-light text-[1.5vmax] md:text-[1vmax]">({product.numOfReviews} reviews)</span>
+                  <Rating {...options}/> <span className="block font-light text-[1.5vmax] md:text-[1vmax]">({product.numOfReviews} reviews)</span>
                   <div>{`$${product.price}`}</div>
                 </div>
               </div>

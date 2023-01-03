@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import logo
 import Logo from '../../../assets/img/logo.png';
@@ -20,14 +20,15 @@ const Header = ({ history }) => {
   //   // add event listener
   //   window.addEventListener('scroll', () => {
   //     // when scrollY is bigger than 50px setBg to true, else false
-  //     return window.scrollY > 50 ? setBg(true) : setBg(false);
+  //     return window.scrollY > 10 ? setBg(true) : setBg(false);
   //   });
   // });
 
   return (
     <header
-      className='bg-primary
-      fixed left-0 py-1 z-10 w-full transition-all duration-200'
+      className='fixed left-0 py-1 z-10 w-full transition-all duration-200 bg-primary'
+      
+
     >
       <div className='container mx-auto'>
         <div className='flex justify-between items-center'>
@@ -46,9 +47,8 @@ const Header = ({ history }) => {
           <nav className='hidden md:flex'>
             <ul className='md:flex md:gap-x-12 text-white mt-1'>
             <Link className='capitalize transition-all hover:border-b mt-1' to="/"><li>Home</li></Link>
-            <li className='hover:border-b mt-1'>About</li>
             <Link className='capitalize transition-all hover:border-b mt-1' to="/products"><li>Product</li></Link>
-            <li className='hover:border-b mt-1'>Contact</li>
+            <Link className='hover:border-b mt-1' to='/contact'>Contact</Link>
               <li className='text-white flex justify-between items-center gap-x-4 text-xl'>
               
                 <Link to="/search"><IoIosSearch /></Link>

@@ -32,7 +32,7 @@ const Product = ({ product }) => {
   return (
     <Fragment>
       {loading ? (<Loader />) : (<section className='section text-center'>
-      <div className='container mx-auto'>
+      <div className='container mx-auto' id='product'>
         <div>
           <h2 className='title'>{title}</h2>
           <p className='max-w-[639px] mx-auto mb-[50px] lg:mb-[70px]'>
@@ -40,7 +40,8 @@ const Product = ({ product }) => {
           </p>
         </div>
         <div className='grid grid-cols-2 gap-x-5 md:grid-cols-3 lg:grid-cols-4 lg:gap-[30px]'>
-        {products && products.map((product) => <ProductCard key={product._id} product={product} />)}
+        {products && products.map((product) =>
+         <ProductCard key={product._id} product={product} />).reverse()}
         </div>
       </div>
     </section>)}

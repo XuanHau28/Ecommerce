@@ -98,6 +98,7 @@ const ProductDetails = ({ match }) => {
     dispatch(getProductDetails(match.params.id));
   }, [dispatch, match.params.id, error, alert, reviewError, success]);
 
+
   return (
     <Fragment>
     {loading ? (<Loader />) : (
@@ -156,7 +157,7 @@ const ProductDetails = ({ match }) => {
 
             <p className='border-y border-y-[rgba(0,0,0,0.205)] py-[2.5vmax] lg:text-left  text-center lg:py-4 text-[rgba(0,0,0,0.651)] font-normal text-base my-4'>
               Status:
-              <b className={product.stock < 1 ? "redColor" : "greenColor"}>
+              <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
                 {product.Stock < 1 ? "OutOfStock" : "InStock"}
               </b>
             </p>
@@ -177,11 +178,11 @@ const ProductDetails = ({ match }) => {
                 mb-[4vmax] text-center'>REVIEWS</h3>
 
 
-<Dialog
+            <Dialog
             aria-labelledby="simple-dialog-title"
             open={open}
             onClose={submitReviewToggle}
-          >
+            >
             <DialogTitle>Submit Review</DialogTitle>
             <DialogContent className="submitDialog">
               <Rating
@@ -209,14 +210,14 @@ const ProductDetails = ({ match }) => {
           </Dialog>
 
           {product.reviews && product.reviews[0] ? (
-            <div className="reviews">
+            <div className="reviews flex flex-row">
               {product.reviews &&
                 product.reviews.map((review) => (
                   <ReviewCard key={review._id} review={review} />
                 ))}
             </div>
           ) : (
-            <p className="noReviews">No Reviews Yet</p>
+            <p className="noReviews text-center">No Reviews Yet</p>
           )}
       </div>
     )}

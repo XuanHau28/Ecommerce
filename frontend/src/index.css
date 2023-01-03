@@ -136,7 +136,8 @@
 }
 #myOrdersHeading {
   text-align: center;
-  font: 400 1.2vmax "Roboto";
+  font-weight: 400;
+  font-size:  1.2vmax;
   padding: 0.5vmax;
   box-sizing: border-box;
   color: rgb(255, 255, 255);
@@ -144,7 +145,8 @@
   background-color: rgb(40, 100, 80);
 }
 .myOrdersTable div {
-  font: 300 1vmax "Roboto";
+  font-weight: 300;
+  font-size:  1vmax;
   color: rgba(0, 0, 0, 0.678);
   border: none;
 }
@@ -157,11 +159,10 @@
 .myOrdersTable a:hover {
   color: tomato;
 }
-
-.MuiDataGrid-columnHeader {
+.MuiDataGrid-columnHeaderWrapper{
   background-color: tomato;
-  padding: 1vmax !important;
 }
+
 
 .MuiDataGrid-columnHeader div {
   color: rgb(255, 255, 255);
@@ -185,7 +186,8 @@
 }
 
 .orderDetailsCartItems > p {
-  font: 400 1.8vmax "Roboto";
+  font-weight: 400;
+  font-size:  1.8vmax;
 }
 
 .submitDialog {
@@ -197,14 +199,195 @@
   margin: 1vmax 0;
   outline: none;
   padding: 1rem;
-  font: 300 1rem "Roboto";
+  font-weight: 300;
+  font-size:  1rem;
 }
 .reviewCardComment {
   color: rgba(0, 0, 0, 0.836);
   font-weight: 600;
   font-size: 0.9vmax;
 }
+.MuiTypography-root {
+  background-color: #fff !important;
+}
+.dashboardContainer > h1 {
+  color: rgba(0, 0, 0, 0.733);
+  font-weight: 300;
+  font-size:  2rem;
+  text-align: center;
+  width: 50%;
+  padding: 1.5rem;
+  margin: auto;
+}
 
+.productListContainer {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#productListHeading {
+  font-weight: 400;
+  font-size:  2rem;
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.637);
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+}
+
+.productListTable {
+  background-color: white;
+  border: none !important;
+}
+
+.productListTable div {
+  font-weight: 300;
+  font-size:  1vmax;
+  color: rgba(0, 0, 0, 0.678);
+  border: none !important;
+}
+
+.productListTable a,
+.productListTable button {
+  color: rgba(0, 0, 0, 0.527);
+  transition: all 0.5s;
+}
+
+.productListTable a:hover {
+  color: tomato;
+}
+
+.productListTable button:hover {
+  color: rgb(236, 30, 30);
+}
+
+.MuiDataGrid-columnHeader div {
+  color: rgb(255, 255, 255);
+}
+
+
+.dashboard {
+  width: 100vw;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  position: absolute;
+  padding-top: 9vmax;
+}
+
+/* Create Product And Update */
+.newProductContainer {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(221, 221, 221);
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.newProductContainer h1 {
+  color: rgba(0, 0, 0, 0.733);
+  font-weight: 300;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.createProductForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 3vmax;
+  justify-content: space-evenly;
+  height: 75%;
+  width: 45vh;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+}
+
+.createProductForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.createProductForm > div > input,
+.createProductForm > div > select,
+.createProductForm > div > textarea {
+  padding: 1vmax 4vmax;
+  padding-right: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  font-weight: 300;
+  font-size: 0.9vmax;
+  outline: none;
+}
+
+.createProductForm > div > svg {
+  position: absolute;
+  transform: translateX(1vmax);
+  font-size: 1.6vmax;
+  color: rgba(0, 0, 0, 0.623);
+}
+
+#createProductFormFile > input {
+  display: flex;
+  padding: 0%;
+}
+
+#createProductFormFile > input::file-selector-button {
+  cursor: pointer;
+  width: 100%;
+  z-index: 2;
+  height: 5vh;
+  border: none;
+  margin: 0%;
+  font-weight: 400;
+  font-size: 0.8vmax;
+  transition: all 0.5s;
+  padding: 0 1vmax;
+  color: rgba(0, 0, 0, 0.623);
+  background-color: rgb(255, 255, 255);
+}
+
+#createProductFormFile > input::file-selector-button:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+#createProductFormImage {
+  width: 100%;
+  overflow: auto;
+
+}
+
+#createProductFormImage > img {
+  width: 3vmax;
+  margin: 0 0.5vmax;
+}
+#createProductBtn {
+  border: none;
+  background-color: tomato;
+  color: white;
+  font-weight: 300;
+  font-size: 0.9vmax;
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
+#createProductBtn:hover {
+  background-color: rgb(179, 66, 46);
+}
 
 @media screen and (max-width: 600px) {
   .confirmshippingArea > p {
@@ -254,7 +437,49 @@
   .orderDetailsCartItems > p {
     font-size: 6vw;
   }
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+  .productListTable div {
+    font-weight: 300;
+    font-size: 4vmax;
+  }
+  .newProductContainer {
+    background-color: rgb(255, 255, 255);
+  }
+  .createProductForm {
+    padding: 5vmax;
+  }
 
+  .createProductForm > div > input,
+  .createProductForm > div > select,
+  .createProductForm > div > textarea {
+    padding: 2.5vmax 5vmax;
+    font-weight: 300;
+    font-size: 2vmax;
+  }
+  .createProductForm {
+    height: 80vh;
+  }
+
+  .createProductForm > div > svg {
+    font-size: 2.8vmax;
+  }
+
+  #createProductFormFile > img {
+    width: 10vmax;
+    border-radius: 100%;
+  }
+
+  #createProductFormFile > input::file-selector-button {
+    height: 7vh;
+    font: 400 1.8vmax cursive;
+  }
+
+  #createProductBtn {
+    font: 300 1.9vmax "Roboto";
+    padding: 1.8vmax;
+  }
 }
 
 }

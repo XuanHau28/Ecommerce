@@ -37,17 +37,14 @@ export const navigation = [
     name: 'home',
     href: '/',
   },
-  {
-    name: 'about',
-    href: '',
-  },
+
   {
     name: 'product',
-    href: '',
+    href: '/products',
   },
   {
     name: 'contact',
-    href: '',
+    href: '/contact',
   },
 ];
 

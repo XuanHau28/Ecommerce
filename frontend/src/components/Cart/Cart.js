@@ -9,17 +9,15 @@ import { Link } from 'react-router-dom';
 const Cart = ({ history }) => {
 
   const dispatch = useDispatch();
-
-  const {cartItems} = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
 
   const increaseQuantity = (id, quantity, stock) => {
     const newQty = quantity + 1;
-    if (stock <= quantity) {
+    if (stock >= quantity) {
       return;
     }
     dispatch(addItemsToCart(id, newQty));
   };
-
 
   const decreaseQuantity = (id, quantity) => {
     const newQty = quantity - 1;
@@ -28,14 +26,15 @@ const Cart = ({ history }) => {
     }
     dispatch(addItemsToCart(id, newQty));
   };
-  
+
   const deleteCartItems = (id) => {
     dispatch(removeItemsFromCart(id));
-  }
+  };
 
   const checkoutHandler = () => {
-    history.push("/login?redirect=shipping")
-  }
+    history.push("/login?redirect=shipping");
+  };
+
 
   return (
     <Fragment>
@@ -65,14 +64,14 @@ const Cart = ({ history }) => {
                      <div className='flex items-center h-[20vmax] lg:h-[8vmax]'> 
                        <button
                        className='border-none bg-[rgba(0,0,0,0.616)] p-[1vmax] lg:p-[0.3vmax_0.5vmax] cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
-                       onClick={() => decreaseQuantity(item.product, item.quantity, item.stock)}
+                       onClick={() => decreaseQuantity(item.product, item.quantity)}
                        >-</button>
                        <input
                        className='border-none lg:font-normal text-[1.5vmax] lg:text-[0.8vmax] text-[rgba(0,0,0,0.74)] lg:w-[2vmax] w-[5vmax] font-normal p-[1.7vmax] lg:p-[0.5vmax] outline-none text-center'
                        type="number" value={item.quantity} readOnly/> 
                        <button
                         className='border-none bg-[rgba(0,0,0,0.616)] p-[1vmax] lg:p-[0.3vmax_0.5vmax]  cursor-pointer text-white transition-all hover:bg-[rgba(0,0,0,0.767)]'
-                        onClick={() => increaseQuantity(item.product, item.quantity) }
+                        onClick={() => increaseQuantity(item.product, item.quantity,item.stock) }
                        >+</button>
                      </div>
        

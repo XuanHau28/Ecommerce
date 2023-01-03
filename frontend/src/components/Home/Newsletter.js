@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 //import data
 import { newsletter } from '../../data';
@@ -14,8 +15,9 @@ const Newsletter = () => {
           <div className='flex flex-col lg:flex-row gap-[22px]'>
             <input value="Email" className='h-[60px] px-6 outline-none placeholder:text-gray-400 text-gray-600
             rounded lg:flex-1'placeholder={placeholder} type='text' />
+            <Link to='/products'>
             <button className='bg-primary h-[60px] hover::bg-slate-900 px-7 rounded-lg font-medium
-            text-xl transition'>{buttonText}</button>
+            text-xl transition'>{buttonText}</button></Link>
             </div> 
         </div>
       </div>
