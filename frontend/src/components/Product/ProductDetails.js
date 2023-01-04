@@ -156,9 +156,9 @@ const ProductDetails = ({ match }) => {
             </div>
 
             <p className='border-y border-y-[rgba(0,0,0,0.205)] py-[2.5vmax] lg:text-left  text-center lg:py-4 text-[rgba(0,0,0,0.651)] font-normal text-base my-4'>
-              Status:
+              Status: 
               <b className={product.Stock < 1 ? "redColor" : "greenColor"}>
-                {product.Stock < 1 ? "OutOfStock" : "InStock"}
+                 {product.Stock < 1 ? "OutOfStock" : "InStock"}
               </b>
             </p>
           </div>

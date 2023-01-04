@@ -35,17 +35,22 @@ const NewItemsSlider = ({ product }) => {
     }
   }}>
       {products && products.map((product, index) =>
-            <SwiperSlide className='max-w-[265px]' key={index}>
+            <SwiperSlide className='max-w-[300px]' key={index}>
+              <div className='w-[170px] lg:w-[220px] flex-wrap mx-auto flex flex-col justify-items-stretch items-baseline transition-all max-w-[290px] text-left min-h-[20vw]'>
+                <div className='border hover:border-accent rounded-[18px] w-[14vmax+1px] flex flex-start justify-center relative transition'>
               <Link to={`/product/${product._id}`}>
 
             <div className='relative'>
-              <img src={product.images[0].url} alt={product.name}/>
-              <div className='absolute text-white bottom-[20px] w-full text-center text-[18px] lg:text-2xl
+              <img className='min-w-[14vmax] max-h-[490px] lg:min-h-[360px] rounded-[18px]' src={product.images[0].url} alt={product.name}/>
+              <div className='absolute text-white bottom-[20px] w-full text-center text-[1.2vmax] lg:text-0.5vmax
                font-medium capitalize'>{product.name}</div>
             </div>
+
             </Link>
+            </div>
+            </div>
           </SwiperSlide>
-      ).reverse()}
+      ).slice(4,8).reverse()}
 
   </Swiper>;
 };
